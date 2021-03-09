@@ -1,0 +1,77 @@
+/*
+
+Design and implement an in-memory job scheduler
+
+job --> particular time t   [5:30 PM]  [Adhoc]
+job --> after every x hours.                                      ====> t0,  (t0 + x)     --> next instance
+job --> after every x hours post completion of previous job.     ====> t0,  (t0 + 1) + x --> next instance, (t0 + 1 + x + 3) + x --> next instance
+
+
+
+Queue - Hold all the jobs -- Priority queue based on time at which the job has to be executed.
+Workers - Perform the jobs
+
+QueueService {
+    createJob(Job job)
+}
+
+Job interface {
+    String getId();
+    execute();
+}
+
+
+
+Queue {
+    PriorityQueue<Jobs> jobsQueue
+    List<Workers>
+
+    Poll --
+
+    for every 100ms,
+
+    while (currentTime >= jobsQueue.peak().getTime()) {
+        // find worker which is not performing any task and assign the task to worker
+        // find worker which is free, then signal it to start working.
+        worker.wakeUp()
+    }
+
+}
+
+Worker implements runnable {
+    private Boolean free;
+
+    public synchronized Boolean isFree() {
+
+    }
+
+}
+
+JobType {
+    FIXED_TIME,
+    SCHEDULED,
+    SCHEDULED_POST_COMPLETION
+}
+
+Submit a job:
+
+Workers attached to the queue -- workers would keep on waiting until queue notifies them of a new job -- wake up and perform the job.
+1. FIXED_TIME - Worker picks up a job and completes it.
+2. SCHEDULED - when a worker picks up a job, at the same time, we should add a new job with time as currentTime + x
+3. SCHEDULED_POST_COMPLETION - when a worker picks up a job and completes it, then we should add a new job with time as currentTime + x.
+
+*/
+
+import java.io.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.core.JsonProcessingException;
+
+// Main class should be named 'Solution'
+class Solution {
+    public static void main(String[] args) {
+        System.out.println("Hello, World");
+    }
+}
+
+
+
