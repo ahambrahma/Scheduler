@@ -5,10 +5,10 @@ import com.scheduler.models.Worker;
 import com.scheduler.contracts.Job;
 
 public class QueuePollService implements Runnable {
-
-    private WorkerService workerService;
     private static final Integer QUEUE_POLLING_INTERVAL = 100;
-    private JobQueue queue;
+
+    private final WorkerService workerService;
+    private final JobQueue queue;
 
     public QueuePollService(WorkerService workerService, JobQueue queue) {
         this.workerService = workerService;

@@ -10,7 +10,7 @@ public class Main {
 
         Job job1 = new FixedTimeJob("first job", System.currentTimeMillis() + 3000);
         Job job2 = new ScheduledTimeJob("second job", System.currentTimeMillis() + 3000, 5000L);
-        Job job3 = new ScheduledPostCompletionJob("third job", System.currentTimeMillis() + 3000, 2000l);
+        Job job3 = new ScheduledPostCompletionJob("third job", System.currentTimeMillis() + 3000, 2000L);
 
         JobQueue queue = new JobQueue();
 
